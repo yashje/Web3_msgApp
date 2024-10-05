@@ -5,12 +5,12 @@ const Buy = ({ state }) => {
     const { contract } = state;
     const name = document.querySelector("#name").value;
     const message = document.querySelector("#message").value;
-    console.log(name, message, contract);
     const amount = { value: ethers.utils.parseEther("0.001") };
-    const transaction = await contract.buyChai(name, message, amount);
+    const transaction = await contract.buy(name, message, amount);
     await transaction.wait();
-    console.log("Transaction is done");
   };
+
+  
   return (
     <>
       <div className="container-md" style={{ width: "50%", marginTop: "25px" }}>

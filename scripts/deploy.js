@@ -11,12 +11,12 @@ async function cosoleBalances(addresses) {
     counter++;
   }
 }
-async function consoleMemos(memos) {
-  for (const memo of memos) {
-    const timestamp = memo.timestamp;
-    const name = memo.name;
-    const from = memo.from;
-    const message = memo.message;
+async function consoleMemos(AllMsgs) {
+  for (const AllMsg of AllMsgs) {
+    const timestamp = AllMsg.timestamp;
+    const name = AllMsg.name;
+    const from = AllMsg.from;
+    const message = AllMsg.message;
     console.log(
       `At ${timestamp},name ${name},address ${from},message ${message}`
     );
@@ -24,8 +24,8 @@ async function consoleMemos(memos) {
 }
 async function main() {
   const [owner, from1, from2, from3] = await hre.ethers.getSigners();
-  const chai = await hre.ethers.getContractFactory("chai");
-  const contract = await chai.deploy(); //instance of contract
+  const msgApp = await hre.ethers.getContractFactory("msgApp");
+  const contract = await msgApp.deploy(); //instance of contract
 
   await contract.deployed();
   console.log("Address of contract:", contract.address);
@@ -40,16 +40,16 @@ async function main() {
   await cosoleBalances(addresses);
 
   const amount = { value: hre.ethers.utils.parseEther("1") };
-  await contract.connect(from1).buyChai("from1", "Very nice chai", amount);
-  await contract.connect(from2).buyChai("from2", "Very nice course", amount);
+  await contract.connect(from1).buy("from1", "Very nice chai", amount);
+  await contract.connect(from2).buy("from2", "Very nice course", amount);
   await contract
     .connect(from3)
-    .buyChai("from3", "Very nice information", amount);
+    .buy("from3", "Very nice information", amount);
 
   console.log("After buying chai");
   await cosoleBalances(addresses);
 
-  const memos = await contract.getMemos();
+  const memos = await contract.getAllMsg();
   consoleMemos(memos);
 }
 

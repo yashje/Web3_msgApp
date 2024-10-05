@@ -1,8 +1,8 @@
-import abi from "./contract/chai.json";
+import abi from "./abis/msgApp.json";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import Buy from "./components/Buy";
-import Memos from "./components/Memos";
+import Message from "./components/Message";
 import chai from "./chai.png";
 import "./App.css";
 
@@ -15,7 +15,7 @@ function App() {
   const [account, setAccount] = useState("None");
   useEffect(() => {
     const connectWallet = async () => {
-      const contractAddress = "0x46436dcb1b29b111a00bb61f5475b420ef1104eb";
+      const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
       const contractABI = abi.abi;
       try {
         const { ethereum } = window;
@@ -49,9 +49,10 @@ function App() {
         console.log(error);
       }
     };
+    
     connectWallet();
   }, []);
-  // console.log(state);
+  
   return (
     <div style={{ backgroundColor: "#EFEFEF", height: "100%" }}>
       <img src={chai} className="img-fluid" alt=".." width="100%" />
@@ -63,7 +64,7 @@ function App() {
       </p>
       <div className="container">
         <Buy state={state} />
-        <Memos state={state} />
+        <Message state={state} />
       </div>
     </div>
   );
