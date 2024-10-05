@@ -22,15 +22,6 @@ git clone <repository-url>
    npx hardhat compile
    ```
 
-3. Create a `.env` file:
-   - Mention the QuickNode Goerli/Sepoli URL and your private key in the `.env` file.
-
-4. Deploy the smart contract:
-   ```
-   npx hardhat run scripts/finalDeploy.js --network <network-name>
-   ```
-   Replace `<network-name>` with the desired network (e.g., Goerli, Sepoli).
-
 ### Frontend Setup
 
 1. Ensure you have MetaMask installed in your browser.
@@ -50,11 +41,3 @@ git clone <repository-url>
    npm start
    ```
 
-## Usage
-
-Once the DApp is set up:
-
-1. Connect your MetaMask wallet to the DApp.
-2. Send cryptocurrency to purchase chai.
-3. Write a sweet message to accompany your purchase.
-4. Enjoy your chai!
